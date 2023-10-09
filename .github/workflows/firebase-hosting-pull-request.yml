@@ -22,11 +22,7 @@ jobs:
       - name: Build All apps
         run: npm run build
       
-  detect-example1-changed:
-    runs-on: ubuntu-latest
-    name: detect if example1 needs to deployed
-    steps:
-      - name: Check changes in example2
+      - name: Check changes in example1
         uses: dorny/paths-filter@v2
         id: example1Changes
         with:
@@ -34,25 +30,6 @@ jobs:
             example1:
               - 'apps/example1/**'
 
-  deploy-example1:
-    if: needs.detect-example1-changed.outputs.example1 == 'true'
-    needs: detect-example1-changed
-    name: Deploy example1
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy example1
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          entryPoint: "./apps/example1"
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_91D8F }}'
-          projectId: version-control-91d8f
-          channelId: ''
-
-  detect-example2-changed:
-    runs-on: ubuntu-latest
-    name: detect if example2 needs to deployed
-    steps:
       - name: Check changes in example2
         uses: dorny/paths-filter@v2
         id: example2Changes
@@ -61,13 +38,20 @@ jobs:
             example2:
               - 'apps/example2/**'
 
-  deploy-example2:
-    if: needs.detect-example2-changed1.outputs.example2 == 'true'
-    needs: detect-example2-changed
-    name: Deploy example2
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy example2
+
+      - name: Deploy example1
+        if: steps.example1Changes.outputs.example1 == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          entryPoint: "./apps/example1"
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_91D8F }}'
+          projectId: version-control-91d8f
+          channelId: ''
+      
+
+      - name: Deploy example1
+        if: steps.example2Changes.outputs.example2 == 'true'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           entryPoint: "./apps/example2"

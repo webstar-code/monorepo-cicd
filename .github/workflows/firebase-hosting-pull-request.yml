@@ -50,7 +50,7 @@ jobs:
           channelId: ''
       
 
-      - name: Deploy example1
+      - name: Deploy example2
         if: steps.example2Changes.outputs.example2 == 'true'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:

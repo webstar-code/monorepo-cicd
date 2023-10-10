@@ -57,6 +57,7 @@ jobs:
           entryPoint: "./apps/example2"
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_91D8F }}'
+          target: "site-2"
           projectId: version-control-91d8f
 
 

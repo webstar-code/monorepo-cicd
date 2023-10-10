@@ -7,12 +7,58 @@ jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
+  
     steps:
-      - uses: actions/checkout@v3
-      - run: npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build All apps
+        run: npm run build
+      
+      - name: Check changes in example1
+        uses: dorny/paths-filter@v2
+        id: example1Changes
+        with:
+          filters: |
+            example1:
+              - 'apps/example1/**'
+
+      - name: Check changes in example2
+        uses: dorny/paths-filter@v2
+        id: example2Changes
+        with:
+          filters: |
+            example2:
+              - 'apps/example2/**'
+
+
+      - name: Deploy example1
+        if: steps.example1Changes.outputs.example1 == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           entryPoint: "./apps/example1"
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_91D8F }}'
           projectId: version-control-91d8f
+          channelId: 'example1'
+      
+
+      - name: Deploy example2
+        if: steps.example2Changes.outputs.example2 == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          entryPoint: "./apps/example2"
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_91D8F }}'
+          target: "site-2"
+          projectId: version-control-91d8f
+
+
+

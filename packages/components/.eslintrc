@@ -1,0 +1,5 @@
+{
+  "extends": ["@app/eslint-config"],
+  "parser": "@typescript-eslint/parser",
+  "ignorePatterns": [".eslintrc"]
+}

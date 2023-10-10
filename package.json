@@ -16,8 +16,8 @@
   },
   "scripts": {
     "build": "lerna run build",
-    "example1": "lerna run dev --scope example1",
-    "example2": "lerna run dev --scope example2",
+    "example1": "lerna run dev --parallel --scope @app/components --scope example1",
+    "example2": "lerna run dev --parallel --scope @app/components --scope example2",
     "lint:eslint:fix": "eslint --ignore-path .eslintignore --fix **/*.{js,jsx,ts,tsx}",
     "prettier": "prettier --write \"**/*.{ts,tsx,md,svelte,js,json,yaml}\"",
     "prettier-check": "prettier --plugin-search-dir . --check .",

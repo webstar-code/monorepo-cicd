@@ -11,6 +11,7 @@
   "dependencies": {
     "@app/eslint-config": "*",
     "@app/prettier-config": "^1.0.0",
+    "@app/components": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

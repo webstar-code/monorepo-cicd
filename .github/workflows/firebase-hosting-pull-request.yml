@@ -4,6 +4,9 @@
 name: Deploy to Firebase Hosting on PR
 'on': pull_request
 
+env: 
+  VITE_PROJECT1: ${{ secrets.VITE_PROJECT1 }}
+  VITE_PROJECT2: ${{ secrets.VITE_PROJECT2 }}
 
 jobs:
   build_and_preview:
@@ -11,10 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     
-    env: 
-      VITE_PROJECT1: ${{ secrets.VITE_PROJECT1 }}
-      VITE_PROJECT2: ${{ secrets.VITE_PROJECT2 }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3

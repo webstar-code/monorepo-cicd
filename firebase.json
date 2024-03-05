@@ -1,0 +1,52 @@
+{
+  "hosting": [
+    {
+      "target": "example-1-prod",
+      "public": "./apps/example1/dist",
+      "predeploy": ["npm ci && npm run build"],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "example-2-prod",
+      "public": "./apps/example2/dist",
+      "predeploy": ["npm ci && npm run build"],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "site-1-staging",
+      "public": "./apps/example1/dist",
+      "predeploy": ["npm ci && npm run build"],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "site-2-staging",
+      "public": "./apps/example2/dist",
+      "predeploy": ["npm ci && npm run build"],
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

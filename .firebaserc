@@ -1,0 +1,29 @@
+{
+  "projects": {
+    "dev": "version-control-91d8f",
+    "prod": "version-control-prod",
+    "default": "version-control-prod"
+  },
+  "targets": {
+    "version-control-91d8f": {
+      "hosting": {
+        "site-1-staging": [
+          "site-1-staging"
+        ],
+        "site-2-staging": [
+          "site-2-staging"
+        ]
+      }
+    },
+    "version-control-prod": {
+      "hosting": {
+        "example-1-prod": [
+          "example-1-prod"
+        ],
+        "example-2-prod": [
+          "example-2-prod"
+        ]
+      }
+    }
+  }
+}

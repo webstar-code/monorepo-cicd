@@ -48,7 +48,7 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_PROD }}'
-          projectId: version-control
+          projectId: version-control-prod
           target: "example-1-prod"
           channelId: "live"
       
@@ -61,6 +61,6 @@ jobs:
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_PROD }}'
-          projectId: version-control
+          projectId: version-control-prod
           target: "example-2-prod"
           channelId: "live"

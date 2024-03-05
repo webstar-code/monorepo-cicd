@@ -3,12 +3,11 @@ import reactLogo from './assets/react.svg';
 import './App.css';
 import { Button } from '@app/components';
 
-
 function App() {
   const [count, setCount] = useState(0);
   return (
     <div className="App">
-      <Button text='asd' />
+      <Button text="asd" />
       <div className="flex justify-center items-center">
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src="/vite.svg" className="logo" alt="Vite logo" />
@@ -27,7 +26,8 @@ function App() {
         </a>
       </div>
       <h1>Vite + React 18 + TS + TailwindCSS + ESLint</h1>
-      <h1>Example1</h1>
+      <h1>Example2</h1>
+      <h1>ENV: {import.meta.env.VITE_PROJECT2}</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
         <p>

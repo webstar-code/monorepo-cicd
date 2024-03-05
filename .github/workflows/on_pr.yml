@@ -1,0 +1,65 @@
+name: Deploy to Firebase Hosting on PR
+'on': pull_request
+
+env: 
+  VITE_PROJECT1: ${{ secrets.VITE_PROJECT1 }}
+  VITE_PROJECT2: ${{ secrets.VITE_PROJECT2 }}
+
+jobs:
+  build_and_preview:
+    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+    runs-on: ubuntu-latest
+    environment: dev
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21
+      - name: Install Dependencies
+        run: npm install
+      
+      - name: Check changes in example1
+        uses: dorny/paths-filter@v2
+        id: example1
+        with:
+          filters: |
+            example1:
+              - 'apps/example1/**'
+
+      - name: Check changes in example2
+        uses: dorny/paths-filter@v2
+        id: example2
+        with:
+          filters: |
+            example2:
+              - 'apps/example2/**'
+
+      - name: Build example1
+        if: steps.example1.outputs.example1 == 'true'
+        run: npm run build-example1
+      - name: Deploy example1
+        if: steps.example1.outputs.example1 == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_91D8F }}'
+          projectId: version-control-91d8f
+          target: "site-1-staging"
+          channelId: ""
+      
+      - name: Build example2
+        if: steps.example2.outputs.example2 == 'true'
+        run: npm run build-example2
+      - name: Deploy example2
+        if: steps.example2.outputs.example2 == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_91D8F }}'
+          projectId: version-control-91d8f
+          target: "site-2-staging"
+          channelId: ""

@@ -26,7 +26,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React 18 + TS + TailwindCSS + ESLint</h1>
-      <h1>Example1 Direct change</h1>
+      <h1>Example1 Direct change again</h1>
       <h1>ENV: {import.meta.env.VITE_PROJECT1}</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>

@@ -4,8 +4,8 @@
 name: Deploy to Firebase Hosting on PR
 'on': pull_request
 env: 
-  VITE_PROJECT1: ${{secrets.VITE_PROJECT1}}
-  VITE_PROJECT2: ${{secrets.VITE_PROJECT2}}
+  VITE_PROJECT1: ${{ secrets.VITE_PROJECT1 }}
+  VITE_PROJECT2: ${{ secrets.VITE_PROJECT2 }}
 jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'

@@ -5,6 +5,7 @@ import './App.css';
 function App() {
   const [count, setCount] = useState(0);
   const x = 'Hello';
+  console.log(import.meta.env.VITE_PROJECT1);
   return (
     <div className="App">
       {x}

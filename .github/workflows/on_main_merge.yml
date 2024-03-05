@@ -14,36 +14,18 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Nodejs
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 21
+          node-version: 'latest'
       - name: Install Dependencies
         run: npm install
       
-      - name: Check changes in example1
-        uses: dorny/paths-filter@v2
-        id: example1
-        with:
-          filters: |
-            example1:
-              - 'apps/example1/**'
-
-      - name: Check changes in example2
-        uses: dorny/paths-filter@v2
-        id: example2
-        with:
-          filters: |
-            example2:
-              - 'apps/example2/**'
-
       - name: Build example1
-        if: steps.example1.outputs.example1 == 'true'
         run: npm run build-example1
       - name: Deploy example1
-        if: steps.example1.outputs.example1 == 'true'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -53,10 +35,8 @@ jobs:
           channelId: "live"
       
       - name: Build example2
-        if: steps.example2.outputs.example2 == 'true'
         run: npm run build-example2
       - name: Deploy example2
-        if: steps.example2.outputs.example2 == 'true'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'

@@ -50,6 +50,7 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_PROD }}'
           projectId: version-control
           target: "example-1-prod"
+          channelId: "live"
       
       - name: Build example2
         if: steps.example2.outputs.example2 == 'true'
@@ -62,3 +63,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_PROD }}'
           projectId: version-control
           target: "example-2-prod"
+          channelId: "live"

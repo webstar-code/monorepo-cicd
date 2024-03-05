@@ -1,14 +1,14 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv } from 'vite';
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ mode }) => {
   // Load env file based on `mode` in the current working directory.
   // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
-  // @ts-ignore 
-  const env = loadEnv(mode, process.cwd(), '')
+  // @ts-ignore
+  const env = loadEnv(mode, process.cwd(), '');
   return {
     // vite config
     define: {
-      __APP_ENV__: JSON.stringify(env.APP_ENV),
-    },
-  }
-})
+      __APP_ENV__: JSON.stringify(env.APP_ENV)
+    }
+  };
+});

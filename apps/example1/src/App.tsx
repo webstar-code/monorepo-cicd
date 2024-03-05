@@ -5,7 +5,6 @@ import './App.css';
 function App() {
   const [count, setCount] = useState(0);
   const x = 'Hello';
-  console.log(import.meta.env.VITE_PROJECT1);
   return (
     <div className="App">
       {x}
@@ -27,7 +26,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React 18 + TS + TailwindCSS + ESLint</h1>
-      <h1>Example1</h1>
+      <h1>Example1 Direct change</h1>
       <h1>ENV: {import.meta.env.VITE_PROJECT1}</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>

@@ -45,7 +45,6 @@ jobs:
         if: steps.example1.outputs.example1 == 'true'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          entryPoint: "./apps/example1"
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_91D8F }}'
           projectId: version-control-91d8f
@@ -59,7 +58,6 @@ jobs:
         if: steps.example2.outputs.example2 == 'true'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          entryPoint: "./apps/example2"
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VERSION_CONTROL_91D8F }}'
           projectId: version-control-91d8f
